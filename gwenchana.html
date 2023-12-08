@@ -1,0 +1,70 @@
+<!--SHAM AQUINO, GLENN ABRAGON, MAXENE RAVARA-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Record Management</title>
+<!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container mt-4">
+<div class="row">
+<div class="col-md-6">
+<h2>Record Input</h2>
+<div>
+<input type="text" id="name" placeholder="Name" class="form-control mb-2">
+<input type="text" id="course" placeholder="Course" class="form-control mb-2">
+<input type="text" id="section" placeholder="Section" class="form-control mb-2">
+<button id="saveRecord" class="btn btn-primary">Save Record</button>
+<hr>
+</div>
+</div>
+<div class="col-md-6">
+<h2>Records</h2>
+<table id="recordTable" class="table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Course</th>
+<th>Section</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<!-- Records will be dynamically added here -->
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function() {
+$('#saveRecord').on('click', function() {
+// Retrieve input values
+var name = $('#name').val();
+var course = $('#course').val();
+var section = $('#section').val();
+
+// Append new row to the table
+$('#recordTable tbody').append('<tr><td>' + name + '</td><td>' + course + '</td><td>' + section + '</td><td><button class="btn btn-danger deleteRecord">DELETE</button></td></tr>');
+
+// Clear input fields after saving
+$('#name').val('');
+$('#course').val('');
+$('#section').val('');
+});
+
+// Delete record on 'DELETE' button click
+$('#recordTable').on('click', '.deleteRecord', function() {
+$(this).closest('tr').remove();
+});
+});
+</script>
+</body>
+</html>

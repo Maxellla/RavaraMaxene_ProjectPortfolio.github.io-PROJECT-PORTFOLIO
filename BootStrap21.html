@@ -1,0 +1,128 @@
+<!-- AQUINO, SHAM ERIKA
+    ABRAGON, GLENN
+    RAVARA, MAXENE -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BootStrap Card</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <style>
+        .text-font {
+            font-family: 'Arial', sans-serif;
+        }
+
+        .bold-text {
+            font-weight: bold;
+        }
+
+        .size-text {
+            font-size: 25px; 
+        }
+
+        .fontsize-body {
+            font-size: 20px; 
+        }
+
+        .text-color {
+            color: black; 
+        }
+    </style>
+
+    <div id="welcomeCard" class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="card-title size-text">Welcome Card</h1>
+            </div>
+            <div class="card-body">
+                <p class="card-title fontsize-body">Welcome to my Website!</p>
+                <p class="card-subtitle mb-2 text-font">Register user here!<p>
+            </div>
+            <div class="card-footer">
+                <button type="button" style="background-color: green;" class="btn btn-primary" data-toggle="modal" data-target="#registerModal">Register</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="registerModalLabel">Register</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="registrationForm">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" class="form-control" id="name" required>
+                            <div class="invalid-feedback">Enter your name yawa ka!.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="section">Section:</label>
+                            <input type="text" class="form-control" id="section" required>
+                            <div class="invalid-feedback">Enter your section jejemon!.</div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" style="background-color: red;" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" style="background-color: green;" class="btn btn-primary" onclick="saveChanges()">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="successCard" class="container mt-5 d-none">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Welcome Card</h5>
+            </div>
+            <div class="card-body text-center">              
+                <p class="card-text text-font" id="registeredmessage"> </p>
+                <p class="card-text text-font bold-text size-text" id="messagedisplay"> </p>
+            </div>
+        </div>
+    </div> 
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+    function saveChanges() {
+        var name = document.getElementById('name').value;
+        var section = document.getElementById('section').value;
+        var nameInput = document.getElementById('name');
+        var sectionInput = document.getElementById('section');
+
+        if (name.trim() === "") {
+            nameInput.classList.add('is-invalid');
+            return;
+        } else {
+            nameInput.classList.remove('is-invalid');
+        }
+
+        if (section.trim() === "") {
+            sectionInput.classList.add('is-invalid');
+            return;
+        } else {
+            sectionInput.classList.remove('is-invalid');
+        }
+
+        document.getElementById('registeredmessage').innerText = 'You have successfully registered.';
+        document.getElementById('messagedisplay').innerText = name + '|' + section;
+        document.getElementById('successCard').classList.remove('d-none');
+        document.getElementById('welcomeCard').classList.add('d-none');
+        $('#registerModal').modal('hide');
+    }
+    </script>
+
+</body>
+</html>
